@@ -1,0 +1,30 @@
+{
+	"fileList": [
+        {
+            "path": "/gslb/program/FDN/",
+            "files": [ "FDN123", "FDN234" ]
+        },
+        {
+            "path": "/",
+            "files": [ "gslb"  
+                , "test1" 
+                , "test1" 
+                , "test1" 
+                , "test1" 
+                , "test1" 
+                , "test1" 
+                , "test1" 
+                , "test1" 
+                , "test1" 
+                , "test1" 
+                , "test1" 
+                , "test1" 
+                , "test1" 
+                , "test1" 
+                , "test1" 
+            ]
+        }
+    ],
+
+	"buckets": [ "bucket1", "bucket2" ]
+}
