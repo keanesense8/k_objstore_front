@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>{{this.$route.params.id }} : {{this.$route.params.path}}</h1>
+    <h1>{{bucket}} : {{this.$route.params.path}}</h1>
 
     <v-container align-center grid-list-sm fluid text-xs-center>
       <v-layout row wrap>
-        <v-flex v-for="folder in folders" xs2 align-text-center>
-          <vdirectory :name="folder" :bucket="bucket" pathto="/gslb/program/FDN/" v-on:folderChange="getFilesByPath"></vdirectory>
+        <v-flex v-for="f in files" xs2 align-text-center>
+          <vdirectory :name="f.name" :bucket="bucket"  :filetype="f.type"></vdirectory>
         </v-flex>
       </v-layout>
     </v-container>
@@ -13,11 +13,15 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
+import { ACTION_NAMES } from "@/store/action_name";
 import vdirectory from "@/components/Directory";
 
 export default {
   data() {
     return {
+      fileDetail: false,
       folders: []
     };
   },
@@ -25,7 +29,8 @@ export default {
     bucket() {
       console.log("return : " + this.$route.params.id);
       return this.$route.params.id;
-    }
+    },
+    ...mapGetters({files :'getFiles' , bucket: "getBucket"})
   },
   components: {
     vdirectory
@@ -40,19 +45,11 @@ export default {
   methods: {
     init() {
       let key = this.$route.params.path;
-      console.log("key:" + key);
+      // console.log("key:" + key);
       this.getFilesByPath(key);
     },
     getFilesByPath(path) {
-      this.$http.get("/api/fileList").then(response => {
-        let filterRes = response.data.filter((n, i) => {
-          return n.path === path;
-        });
-        console.log(filterRes);
-        if (filterRes.length !== 0) {
-          this.$data.folders = filterRes[0].files;
-        }
-      });
+       this.$store.dispatch(ACTION_NAMES.CHANGE_DIR , path)
     }
   }
 };

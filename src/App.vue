@@ -41,6 +41,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
+import { ACTION_NAMES } from "@/store/action_name";
+
 export default {
   name: "App",
   components: {},
@@ -75,8 +79,12 @@ export default {
      
     },
     bucket(index){
-      console.log('bucket : ' + this.items[index].text)
-      this.$router.push('/bucket/' + this.items[index].text + "/path/"  + encodeURIComponent("/"))
+      
+      let bucket = this.items[index].text
+      console.log('bucket : ' + bucket)
+      this.$router.push('/bucket/' + bucket + "/path/"  + encodeURIComponent("/"))
+      this.$store.dispatch(ACTION_NAMES.CHANGE_DIR , '/')
+      this.$store.dispatch(ACTION_NAMES.CHANGE_BUCKET , bucket)
     }
   }
 };
