@@ -66,7 +66,7 @@ export default {
       //   { icon: "archive", text: "bucket2" }
       // ];
 
-      this.$http.get("api/buckets").then(response => {
+      this.$http.get("/api/buckets").then(response => {
         // console.log('get from api :' + response.data)
         let futureItems = [{ heading: "Buckets" }];
         // console.log(response.data.files);

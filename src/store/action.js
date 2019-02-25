@@ -4,7 +4,7 @@ import Vue from 'vue';
 
 export default {
 	[ACTION_NAMES.CHANGE_DIR]({ commit }, dirto) {
-		// console.log('action' + dirto);
+		console.log('action:' + dirto);
 		Vue.http.get('/api/fileList').then((response) => {
 			// console.log('response:');
 			console.log(response.data);

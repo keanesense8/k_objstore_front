@@ -21,6 +21,9 @@ import { mapActions } from "vuex";
 import { ACTION_NAMES } from "@/store/action_name";
 
 export default {
+  data: () => {
+    return {};
+  },
   props: {
     name: String,
     bucket: String,
@@ -43,18 +46,21 @@ export default {
     changeDir() {
       // console.log("goto : " + this.$props.pathto);
       // console.log("encoder" + encodeURIComponent("/"))
+      
       if (this.$props.filetype === "dir") {
         let goto = this.$route.params.path + this.$props.name + "/";
-        console.log("goto:" + goto);
+        // console.log("goto:" + goto);
         this.$router.replace(
           "/bucket/" + this.$props.bucket + "/path/" + encodeURIComponent(goto)
         );
         // this.$emit("folderChange" , this.$props.pathto)
         this.$store.dispatch(ACTION_NAMES.CHANGE_DIR, goto);
-      }else{
-        console.log("show detail")
+      } else {
+        // console.log("show detail");
+        // this.$data.detail = true
+        let goto = this.$route.params.path + this.$props.name;
+        this.$emit("showDetail", goto);
       }
-
     }
   }
 };
