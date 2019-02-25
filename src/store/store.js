@@ -10,8 +10,8 @@ export default new Vuex.Store({
   state: {
      bucket: "",
      buckets : [],
-     files : []
-
+     files : [],
+     loading: false
   },
   mutations,
   actions,

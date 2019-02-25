@@ -8,6 +8,8 @@ import './plugins/vue-resource'
 
 Vue.config.productionTip = false
 
+
+
 new Vue({
   router,
   store,

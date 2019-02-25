@@ -46,7 +46,7 @@ export default {
     changeDir() {
       // console.log("goto : " + this.$props.pathto);
       // console.log("encoder" + encodeURIComponent("/"))
-      
+
       if (this.$props.filetype === "dir") {
         let goto = this.$route.params.path + this.$props.name + "/";
         // console.log("goto:" + goto);
@@ -59,7 +59,11 @@ export default {
         // console.log("show detail");
         // this.$data.detail = true
         let goto = this.$route.params.path + this.$props.name;
-        this.$emit("showDetail", goto);
+        this.$emit("showDetail", {
+          name: this.$props.name,
+          path: this.$props.pathto,
+          type: this.$props.filetype
+        });
       }
     }
   }
