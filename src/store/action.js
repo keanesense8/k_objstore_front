@@ -5,7 +5,8 @@ import Vue from 'vue';
 export default {
 	[ACTION_NAMES.CHANGE_DIR]({ commit , state}, dirto) {
         // console.log('action:' + dirto);
-        // console.log(state)
+		// console.log(state)
+		// commit(MUTATION_TYPES.CHANGE_CURRENTPATH, dirto);
         let apiUrl = '/api/self/bucket/' + state.bucket + "/path/" +   dirto.split("/").join("_")
 		commit(MUTATION_TYPES.CHANGE_LOADING  ,true)
         // mystring.split(',').join(newchar);
@@ -13,7 +14,8 @@ export default {
 		Vue.http.get(apiUrl).then((response) => {
             // console.log('response:');
             // console.log(response.data);
-            commit(MUTATION_TYPES.CHANGE_FILES, response.data);
+			commit(MUTATION_TYPES.CHANGE_FILES, response.data);
+			commit(MUTATION_TYPES.CHANGE_CURRENTPATH, dirto);
 			commit(MUTATION_TYPES.CHANGE_LOADING  ,false)
 			// let filterRes = response.data.filter((n) => {
 			// 	return n.path === dirto;

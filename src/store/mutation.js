@@ -12,5 +12,8 @@ export default {
 	},
 	[MUTATION_TYPES.CHANGE_LOADING](state , v) {
 		state.loading = v;
+	},
+	[MUTATION_TYPES.CHANGE_CURRENTPATH](state , path) {
+		state.currentPath = path;
 	}
 };

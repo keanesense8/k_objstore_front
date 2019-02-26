@@ -6,9 +6,10 @@
             <!-- <v-chip   v-else label outline color="red">{{val}} - {{index}} </v-chip> -->
             <!-- <span v-if="items.length !== index + 1 ">{{val}} - {{index}} / </span>
             <span v-else>{{val}} - {{index}}  </span> -->
-            <a><span STYLE="color: blue darken-3; font-size: 20pt"  @click="breadClick(val.href , val.text)">{{val.text}}</span></a>
-           
-           <span STYLE="color: black; font-size: 20pt" v-if="items.length !== index + 1"> / </span>
+
+            <a><span STYLE="color: blue darken-3; font-size: 20pt"  @click="breadClick(val.href)">{{val.text}}</span></a>
+           <span STYLE="color: black; font-size: 20pt" v-if="items.length !== index + 1 && index !==0"> / </span>
+           <span STYLE="color: black; font-size: 20pt" v-else-if="index === 0 "> : </span>
         </template>
     </div>
 </template>
@@ -27,20 +28,12 @@ export default {
         }
     },
     methods:{
-        breadClick(href , text){
-            let eles = this.$props.items
-            console.log("breadClick:" + eles)
-            this.$router.replace(href)
-            let goto = '/'
-            for(let idx in eles){
-                goto += eles[idx].text + '/'
-                //需要判断 当前点击对象 text === for循环
-                if(eles[idx].text === text){
-                    break;
-                }
-            }
-            
-            this.$store.dispatch(ACTION_NAMES.CHANGE_DIR, goto);
+        breadClick(href){
+            // let eles = this.$props.items
+        
+            // console.log( this.$props.items)
+            console.log(href)
+            this.$store.dispatch(ACTION_NAMES.CHANGE_DIR, href);
         }
     }
 }

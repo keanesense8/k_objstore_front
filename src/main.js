@@ -5,10 +5,12 @@ import router from './router'
 import store from './store/store'
 import './plugins/vue-resource'
 
+require('vue2-animate/dist/vue2-animate.min.css')
+
 
 Vue.config.productionTip = false
 
-
+// Vue.use(Tween , '$tween')
 
 new Vue({
   router,

@@ -11,7 +11,8 @@ export default new Vuex.Store({
      bucket: "",
      buckets : [],
      files : [],
-     loading: false
+     loading: false,
+     currentPath: ""
   },
   mutations,
   actions,

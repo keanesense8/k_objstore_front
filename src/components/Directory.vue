@@ -11,7 +11,7 @@
   >
     <v-img :src="srcIcon" height="96px" width="100px" aspect-ratio="0.7"></v-img>
 
-    <span class="title font-weight-light">{{name}}</span>
+    <span  style="font-size:10px">{{name}}</span>
   </v-card>
 </template>
 
@@ -28,7 +28,8 @@ export default {
     name: String,
     bucket: String,
     pathto: String,
-    filetype: String
+    filetype: String,
+    size: Number
   },
   computed: {
     srcIcon() {
@@ -40,6 +41,9 @@ export default {
       //  }
       return "icons/" + type + ".png";
       //  return "icons/dir.png"
+    },
+    vName() {
+      
     }
   },
   methods: {
@@ -48,12 +52,13 @@ export default {
       // console.log("encoder" + encodeURIComponent("/"))
 
       if (this.$props.filetype === "dir") {
-        let goto = this.$route.params.path + this.$props.name + "/";
-        // console.log("goto:" + goto);
-        this.$router.replace(
-          "/bucket/" + this.$props.bucket + "/path/" + encodeURIComponent(goto)
-        );
+        let goto = this.$props.pathto ;
+        // console.log("goto:" + goto)
+        // this.$router.replace(
+        //   "/bucket/" + this.$props.bucket + "/path/" + encodeURIComponent(goto)
+        // );
         // this.$emit("folderChange" , this.$props.pathto)
+        
         this.$store.dispatch(ACTION_NAMES.CHANGE_DIR, goto);
       } else {
         // console.log("show detail");
@@ -62,7 +67,8 @@ export default {
         this.$emit("showDetail", {
           name: this.$props.name,
           path: this.$props.pathto,
-          type: this.$props.filetype
+          type: this.$props.filetype,
+          size: this.$props.size
         });
       }
     }

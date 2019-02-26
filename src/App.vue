@@ -30,7 +30,9 @@
     </v-toolbar>
     <v-content>
       <v-container class="#F5F5F5">
-        <router-view/>
+        <transition name="bounce" mode="out-in">
+          <router-view/>
+        </transition>
       </v-container>
     </v-content>
   </v-app>
@@ -52,6 +54,11 @@ export default {
     // console.log(this.$data.items);
     this.init();
   },
+  created(){
+    console.log("created")
+    console.log(this.$tween)
+  }
+  ,
   methods: {
     home() {
       this.$router.replace("/");
@@ -137,5 +144,22 @@ pre {
   font-variant: normal;
   font-weight: 400;
   line-height: 18.5714px;
+}
+.bounce-enter-active {
+  animation: bounce-in 0.2s;
+}
+/* .bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+} */
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
